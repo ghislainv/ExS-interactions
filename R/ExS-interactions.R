@@ -33,7 +33,7 @@ nsite <- 50      # Number of sites
 ninit <- 5       # Initial number of individuals per species
 nt <- 100        # Time steps
 Q <- 200         # Dimensionality of E (columns in X)
-S <- 10 #50          # Number of species
+S <- 50          # Number of species
 varBeta <- .1    # Determines magnitude of variation in B
 varX <- .1       # Determines magnitude of variation in X
 #C  <- ninit*10   # Carrying capacity for a local site in survival probit
@@ -47,7 +47,7 @@ tau <- 1e-3      # Nugget variance
 beta <- matrix(rnorm(Q * S, 0, sqrt(varBeta)), Q, S)     # X, B, V
 # Get covariance matrix vx for environmental dimensions X
 # Must be symmetric, positive semi-definite (add small values on the diagonal)
-vx   <- cov(rmvnArma(10, rep(0, Q), varX * diag(Q))) + 1e-10 * diag(Q)
+vx   <- cov(rmvnArma(Q+1, rep(0, Q), varX * diag(Q)))
 # Draw environmental dimensions for each site
 x    <- rmvnArma(nsite, rep(0, Q), vx)
 vx   <- cov(x)
@@ -227,7 +227,7 @@ kmax <- apply(cs, 1, which.max )
 ik   <- cbind( 1:S, kmax )
 points(ik[,2], ik[,1], pch=0, cex=.3, col='brown')
 
-title('E = 2')
+title('E = 2OO')
 
 # ============
 # outcomes map
