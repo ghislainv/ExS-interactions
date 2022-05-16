@@ -46,7 +46,7 @@ tau <- 1e-3      # Nugget variance
 # Species parameters
 beta <- matrix(rnorm(Q * S, 0, sqrt(varBeta)), Q, S)     # X, B, V
 # Get covariance matrix vx for environmental dimensions X
-# Must be symmetric, positive semi-definite (add small values on the diagonal)
+# Must be symmetric, positive semi-definite
 vx   <- cov(rmvnArma(Q+1, rep(0, Q), varX * diag(Q)))
 # Draw environmental dimensions for each site
 x    <- rmvnArma(nsite, rep(0, Q), vx)
